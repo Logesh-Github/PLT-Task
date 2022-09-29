@@ -7,7 +7,7 @@ import {
   INCREASE_PRODUCT_QUANTITY,
   DECREASE_PRODUCT_QUANTITY,
 } from '../types';
-import {ActionCreator, Action, Dispatch} from 'redux';
+import {ActionCreator, Dispatch} from 'redux';
 import {ProductsListInterface} from '../reducers/cart.reducer';
 
 interface GetProductSuccessAction {

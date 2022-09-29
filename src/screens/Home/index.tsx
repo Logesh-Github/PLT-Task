@@ -1,5 +1,5 @@
-import React, {useEffect, useState, FunctionComponent} from 'react';
-import {View, Text, FlatList, Alert} from 'react-native';
+import React, {useEffect, FunctionComponent} from 'react';
+import {View, Alert} from 'react-native';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {CustomLoader, Header, ProductList} from '../../components/reusable-components';

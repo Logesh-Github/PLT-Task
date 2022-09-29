@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {FlatList, View, Text} from 'react-native';
 import {ProductCard} from '../../reusable-components';
 import {ProductsListInterface} from '../../../redux-store/reducers/cart.reducer';
