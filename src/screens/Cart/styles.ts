@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     iconView: { height: 30, width: 30 },
-    emptyView: { flex: 1, justifyContent: 'center', alignItems: 'center' }
+    emptyView: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+    homeBtn: { width: 120, height: 40, borderRadius: 40 / 2, backgroundColor: '#DDDBDA', marginVertical: 20, justifyContent: 'center', alignItems: 'center' }
 });
 
 export default styles;

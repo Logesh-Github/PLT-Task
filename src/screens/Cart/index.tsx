@@ -11,6 +11,7 @@ import {
   increaseProductQty,
   decreaseProductQty,
 } from '../../redux-store/actions';
+import {CommonActions} from '@react-navigation/native';
 
 const Cart: FunctionComponent = (): JSX.Element => {
   const navigation = useNavigation();
@@ -71,7 +72,13 @@ const Cart: FunctionComponent = (): JSX.Element => {
           <Text numberOfLines={3} style={styles.txt}>
             {item.name}
           </Text>
-          <Text style={styles.txt}>{`$ ${item?.productCount === 1 ? item.price : item?.newPrice ? item.newPrice : item.price}`}</Text>
+          <Text style={styles.txt}>{`$ ${
+            item?.productCount === 1
+              ? item.price
+              : item?.newPrice
+              ? item.newPrice
+              : item.price
+          }`}</Text>
           <Text style={styles.txt}>{`colour: ${item.colour}`}</Text>
           <TouchableOpacity
             activeOpacity={0.7}
@@ -116,6 +123,16 @@ const Cart: FunctionComponent = (): JSX.Element => {
   const _renderEmptyUI = () => (
     <View style={styles.emptyView}>
       <Text>{'Shopping Cart is empty'}</Text>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.dispatch(
+            CommonActions.reset({index: 1, routes: [{name: 'Home'}]}),
+          );
+        }}
+        activeOpacity={0.7}
+        style={styles.homeBtn}>
+        <Text>{'GO TO HOME'}</Text>
+      </TouchableOpacity>
     </View>
   );
 
