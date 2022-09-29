@@ -15,6 +15,7 @@ const Home: FunctionComponent = (): JSX.Element => {
   const isOnline: boolean | null = useNetInfo();
   const isLoading: boolean = useAppSelector((state: any) => state.cart.isLoading);
   const productList: ProductsListInterface[]= useAppSelector((state: any) => state.cart.productList);
+  const cartList: ProductsListInterface[]= useAppSelector((state: any) => state.cart.cartList);
 
   useEffect(() => {
     if (isOnline) {
@@ -32,6 +33,7 @@ const Home: FunctionComponent = (): JSX.Element => {
       <Header
         imageSource={Images.cart}
         onPressRightBtn={() => navigation.navigate('Cart')}
+        cartCount={cartList.length}
       />
       <ProductList data={productList} onPressAddCartBtn = {(item: ProductsListInterface, index: number) => handleAddToCart(item, index)} />
     </View>
