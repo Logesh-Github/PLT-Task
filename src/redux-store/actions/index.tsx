@@ -68,7 +68,7 @@ export const getProductFail: ActionCreator<GetProductFailAction> = () => {
   };
 };
 
-export const getProducts = () => async (dispatch: Dispatch<any>) => {
+export const getProducts: any = () => async (dispatch: Dispatch<any>) => {
   dispatch(toggleLoader(true));
   try {
     const res = await fetch(
