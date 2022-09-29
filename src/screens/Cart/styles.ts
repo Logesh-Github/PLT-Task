@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Colors, DeviceConfig } from '../../utils';
 import { normalize } from '../../utils/FontsCalculation';
 
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
     card: {
-        height: DeviceConfig.screenHeight / 4,
+        height: Platform.OS === 'ios' ? DeviceConfig.screenHeight / 4 : DeviceConfig.screenHeight / 3.5,
         width: '100%',
         backgroundColor: Colors.white,
         borderWidth: 1,
