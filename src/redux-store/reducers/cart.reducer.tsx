@@ -4,17 +4,17 @@ import {
   TOGGLE_LOADER,
 } from '../types';
 
-interface productsListInterface {
-  id: string;
-  color: string;
+export interface ProductsListInterface {
+  id: number;
+  colour: string;
   name: string;
   price: number;
   img: string;
 }
 
 interface CartState {
-  productList: productsListInterface[];
-  cartList: productsListInterface[];
+  productList: ProductsListInterface[];
+  cartList: ProductsListInterface[];
   isLoading: boolean;
 }
 

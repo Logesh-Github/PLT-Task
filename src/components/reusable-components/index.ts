@@ -1,4 +1,6 @@
 import CustomLoader from './CustomLoader';
 import Header from './Header';
+import ProductList from './ProductList';
+import ProductCard from './ProductCard';
 
-export { CustomLoader, Header };
+export { CustomLoader, Header, ProductList, ProductCard };

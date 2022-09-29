@@ -1,17 +1,10 @@
 import { GET_PRODUCTS_SUCCESS, GET_PRODUCTS_FAIL, TOGGLE_LOADER } from '../types';
 import {ActionCreator, Action, Dispatch} from 'redux';
-
-interface productsListInterface {
-    id: string
-    color: string
-    name: string
-    price: number
-    img: string
-}
+import {ProductsListInterface} from '../reducers/cart.reducer';
 
 interface GetProductSuccessAction {
     type: typeof GET_PRODUCTS_SUCCESS,
-    payload: productsListInterface[]
+    payload: ProductsListInterface[]
 }
 
 interface GetProductFailAction {
@@ -30,7 +23,7 @@ export const toggleLoader: ActionCreator<ToggleLoaderAction>= (value: boolean) =
       };
 }
 
-export const getProductSuccess: ActionCreator<GetProductSuccessAction> = (data: productsListInterface[]) => {
+export const getProductSuccess: ActionCreator<GetProductSuccessAction> = (data: ProductsListInterface[]) => {
     return {
       type: GET_PRODUCTS_SUCCESS,
       payload: data
