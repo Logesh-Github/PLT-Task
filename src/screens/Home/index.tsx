@@ -6,21 +6,28 @@ import {CustomLoader, Header} from '../../components/reusable-components';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import Images from '../../assets/images';
 import {getProducts} from '../../redux-store/actions';
+import {useNetInfo} from '../../hooks/NetInfo';
 
 const Home: FunctionComponent = (): JSX.Element => {
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
+  const isOnline: boolean | null = useNetInfo();
   const isLoading = useAppSelector((state: any) => state.cart.isLoading);
   const productList = useAppSelector((state: any) => state.cart.productList);
 
   useEffect(() => {
-    dispatch(getProducts());
+    if (isOnline) {
+      dispatch(getProducts());
+    }
   }, []);
 
   return (
     <View style={styles.mainContainer}>
       {isLoading && <CustomLoader />}
-      <Header imageSource={Images.cart} onPressRightBtn={() => navigation.navigate("Cart")} />
+      <Header
+        imageSource={Images.cart}
+        onPressRightBtn={() => navigation.navigate('Cart')}
+      />
     </View>
   );
 };
