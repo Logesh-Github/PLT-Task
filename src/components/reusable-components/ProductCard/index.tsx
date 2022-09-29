@@ -10,6 +10,7 @@ interface IProps {
   colour: string;
   img: string;
   price: number;
+  isAddedToCart?: boolean;
   };
 }
 
@@ -35,8 +36,8 @@ const ProductCard: React.FC<IProps> = ({
               </Text>
             </View>
           </View>
-      <TouchableOpacity onPress={onPressAddCartBtn} activeOpacity={0.7} style={styles.cartBtn}>
-          <Text style={styles.cartBtnTxt}>Add To Cart</Text>
+      <TouchableOpacity disabled={productDetail.isAddedToCart ? true : false} onPress={onPressAddCartBtn} activeOpacity={0.7} style={styles.cartBtn}>
+          <Text style={styles.cartBtnTxt}>{productDetail.isAddedToCart ? "Added In Cart" : "Add To Cart"}</Text>
       </TouchableOpacity>
         </View>
       </View>

@@ -23,7 +23,7 @@ const Home: FunctionComponent = (): JSX.Element => {
   }, []);
 
   const handleAddToCart = (item: ProductsListInterface, index: number) => {
-    dispatch(addProductToCart(item));
+    dispatch(addProductToCart(item, index));
   };
 
   return (

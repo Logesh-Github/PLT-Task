@@ -23,7 +23,7 @@ interface ToggleLoaderAction {
 
 interface AddToCartAction {
   type: typeof ADD_PRODUCT_TO_CART;
-  payload: ProductsListInterface;
+  payload: {data: ProductsListInterface, productIndex: number};
 }
 
 export const toggleLoader: ActionCreator<ToggleLoaderAction> = (
@@ -65,9 +65,10 @@ export const getProducts = () => async (dispatch: Dispatch<any>) => {
 
 export const addProductToCart: ActionCreator<AddToCartAction> = (
   data: ProductsListInterface,
+  productIndex: number
 ) => {
   return {
     type: ADD_PRODUCT_TO_CART,
-    payload: data,
+    payload: {data, productIndex}
   };
 };

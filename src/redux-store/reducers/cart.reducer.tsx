@@ -11,6 +11,7 @@ export interface ProductsListInterface {
   name: string;
   price: number;
   img: string;
+  isAddedToCart?: boolean;
 }
 
 interface CartState {
@@ -56,11 +57,16 @@ export function cartReducer(
       };
     }
     case ADD_PRODUCT_TO_CART: {
-      let tempArr = [...state.cartList];
-      tempArr.push(action.payload);
+      let cartTempArr: ProductsListInterface[] = [...state.cartList];
+      let productTempArr: ProductsListInterface[] = [...state.productList];
+      let product: any = productTempArr.find((item: ProductsListInterface, index: number) => index === action.payload.productIndex);
+      product.isAddedToCart = true;
+      productTempArr[action.payload.productIndex] = product;
+      cartTempArr.push(action.payload.data);
       return {
         ...state,
-        cartList: tempArr,
+        productList: productTempArr,
+        cartList: cartTempArr,
       };
     }
     default:
