@@ -9,12 +9,13 @@ const styles = StyleSheet.create({
         padding: 10
     },
     card: {
-        // height: DeviceConfig.screenHeight / 4,
+        height: DeviceConfig.screenHeight / 4,
         width: '100%',
         backgroundColor: Colors.white,
         borderWidth: 1,
         borderColor: Colors.lightGrey,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginBottom: 10
     },
     imgView: {
         width: '35%',
@@ -35,14 +36,14 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         alignSelf: 'flex-end',
-        marginRight: 15,
+        marginRight: 10,
         backgroundColor: 'red'
     },
     counterBtn: {
         height: 40,
         width: 150,
         alignSelf: 'flex-end',
-        marginRight: 15,
+        marginRight: 10,
         backgroundColor: '#DDDBDA',
         marginTop: 10,
         borderRadius: 40 / 2,
@@ -50,7 +51,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
-    iconView: { height: 30, width: 30 }
+    iconView: { height: 30, width: 30 },
+    emptyView: {flex: 1, justifyContent: 'center', alignItems: 'center'}
 });
 
 export default styles;

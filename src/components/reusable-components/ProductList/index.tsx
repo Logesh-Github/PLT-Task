@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, Alert} from 'react-native';
+import {FlatList, View, Text} from 'react-native';
 import {ProductCard} from '../../reusable-components';
 import {ProductsListInterface} from '../../../redux-store/reducers/cart.reducer';
 
@@ -34,6 +34,12 @@ const ProductList: React.FC<IProps> = ({
     />
   );
 
+  const _renderEmptyUI = () => (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text>{"No items to show"}</Text>
+    </View>
+  );
+
   return (
     <FlatList
       data={data}
@@ -41,6 +47,7 @@ const ProductList: React.FC<IProps> = ({
       numColumns={2}
       renderItem={_renderItem}
       contentContainerStyle={{paddingHorizontal: 5}}
+      ListEmptyComponent={_renderEmptyUI}
     />
   );
 };

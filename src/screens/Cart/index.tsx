@@ -21,16 +21,24 @@ const Cart: FunctionComponent = (): JSX.Element => {
     (state: any) => state.cart.cartList,
   );
 
-  return (
-    <View style={styles.mainContainer}>
-      <View style={styles.card}>
-        <View style={styles.imgView}></View>
+  const _renderItem = ({
+    item,
+    index,
+  }: {
+    item: ProductsListInterface;
+    index: number;
+  }) => {
+    return (
+      <View style={styles.card} key={index.toString()}>
+        <View style={styles.imgView}>
+        <Image source={{uri: item.img}} style={styles.img} resizeMode={"contain"} />
+        </View>
         <View style={styles.detailsView}>
           <Text numberOfLines={3} style={styles.txt}>
-            {'Stone Ribbed Strappy Cut Out Detail Bodycon Dress'}
+            {item.name}
           </Text>
-          <Text style={styles.txt}>{`$4`}</Text>
-          <Text style={styles.txt}>{`colour: black`}</Text>
+          <Text style={styles.txt}>{`$ ${item.price}`}</Text>
+          <Text style={styles.txt}>{`colour: ${item.colour}`}</Text>
           <TouchableOpacity activeOpacity={0.7} style={styles.deleteBtn}>
             <Image
               source={Images.delete}
@@ -59,6 +67,23 @@ const Cart: FunctionComponent = (): JSX.Element => {
           </TouchableOpacity>
         </View>
       </View>
+    );
+  };
+
+  const _renderEmptyUI = () => (
+    <View style={styles.emptyView}>
+      <Text>{"Shopping Cart is empty"}</Text>
+    </View>
+  );
+
+  return (
+    <View style={styles.mainContainer}>
+      <FlatList
+        data={cartList}
+        keyExtractor={(item: ProductsListInterface) => item.id.toString()}
+        renderItem={_renderItem}
+        ListEmptyComponent={_renderEmptyUI}
+      />
     </View>
   );
 };

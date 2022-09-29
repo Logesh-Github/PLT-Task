@@ -1,5 +1,5 @@
 import React, {useEffect, useState, FunctionComponent} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, Alert} from 'react-native';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {CustomLoader, Header, ProductList} from '../../components/reusable-components';
@@ -20,6 +20,8 @@ const Home: FunctionComponent = (): JSX.Element => {
   useEffect(() => {
     if (isOnline) {
       dispatch(getProducts());
+    } else {
+      Alert.alert("Check internet connection!");
     }
   }, []);
 
