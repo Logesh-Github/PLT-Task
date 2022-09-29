@@ -2,8 +2,9 @@ import React, {useState, FunctionComponent} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
-import {CustomLoader} from '../../components/reusable-components';
+import {CustomLoader, Header} from '../../components/reusable-components';
 import {useSelector, useDispatch} from 'react-redux';
+import Images from '../../assets/images';
 
 const Home: FunctionComponent = (): JSX.Element => {
   const navigation = useNavigation();
@@ -14,6 +15,7 @@ const Home: FunctionComponent = (): JSX.Element => {
   return (
     <View style={styles.mainContainer}>
       {isLoading && <CustomLoader />}
+      <Header imageSource={Images.cart} onPressRightBtn={() => navigation.navigate("Cart")} />
       <Text>{name}</Text>
     </View>
   );

@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_PRODUCTS_SUCCESS, GET_PRODUCTS_FAIL, TOGGLE_LOADER } from '../types';
+import { GET_PRODUCTS_SUCCESS, GET_PRODUCTS_FAIL, TOGGLE_LOADER } from '../types';
 import {ActionCreator} from 'redux';
 
 interface productsListInterface {
