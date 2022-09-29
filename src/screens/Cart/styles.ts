@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
         width: 50,
         alignSelf: 'flex-end',
         marginRight: 10,
-        backgroundColor: 'red'
     },
     counterBtn: {
         height: 40,

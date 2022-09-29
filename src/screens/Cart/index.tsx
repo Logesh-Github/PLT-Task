@@ -69,7 +69,7 @@ const Cart: FunctionComponent = (): JSX.Element => {
           />
         </View>
         <View style={styles.detailsView}>
-          <Text numberOfLines={3} style={styles.txt}>
+          <Text numberOfLines={2} style={styles.txt}>
             {item.name}
           </Text>
           <Text style={styles.txt}>{`$ ${
