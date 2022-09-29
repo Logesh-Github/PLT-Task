@@ -2,7 +2,8 @@ import {
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_FAIL,
   TOGGLE_LOADER,
-  ADD_PRODUCT_TO_CART
+  ADD_PRODUCT_TO_CART,
+  DELETE_PRODUCT_FROM_CART,
 } from '../types';
 
 export interface ProductsListInterface {
@@ -67,6 +68,19 @@ export function cartReducer(
         ...state,
         productList: productTempArr,
         cartList: cartTempArr,
+      };
+    }
+    case DELETE_PRODUCT_FROM_CART: {
+      let cartTempArr: ProductsListInterface[] = [...state.cartList];
+      let productTempArr: ProductsListInterface[] = [...state.productList];
+      let product: any = productTempArr.find((item: ProductsListInterface, index: number) => index === action.payload.productIndex);
+      product.isAddedToCart = false;
+      productTempArr[action.payload.productIndex] = product;
+      cartTempArr.splice(cartTempArr.findIndex(a => a.id === action.payload.data.id) , 1);
+      return {
+        ...state,
+        productList: productTempArr,
+        cartList: cartTempArr
       };
     }
     default:

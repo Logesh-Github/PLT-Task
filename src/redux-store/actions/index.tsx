@@ -3,6 +3,7 @@ import {
   GET_PRODUCTS_FAIL,
   TOGGLE_LOADER,
   ADD_PRODUCT_TO_CART,
+  DELETE_PRODUCT_FROM_CART,
 } from '../types';
 import {ActionCreator, Action, Dispatch} from 'redux';
 import {ProductsListInterface} from '../reducers/cart.reducer';
@@ -23,6 +24,11 @@ interface ToggleLoaderAction {
 
 interface AddToCartAction {
   type: typeof ADD_PRODUCT_TO_CART;
+  payload: {data: ProductsListInterface, productIndex: number};
+}
+
+interface DeleteFromCartAction {
+  type: typeof DELETE_PRODUCT_FROM_CART;
   payload: {data: ProductsListInterface, productIndex: number};
 }
 
@@ -69,6 +75,16 @@ export const addProductToCart: ActionCreator<AddToCartAction> = (
 ) => {
   return {
     type: ADD_PRODUCT_TO_CART,
+    payload: {data, productIndex}
+  };
+};
+
+export const deleteFromCart: ActionCreator<DeleteFromCartAction> = (
+  data: ProductsListInterface,
+  productIndex: number
+) => {
+  return {
+    type: DELETE_PRODUCT_FROM_CART,
     payload: {data, productIndex}
   };
 };

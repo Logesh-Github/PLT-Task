@@ -6,6 +6,7 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import Images from '../../assets/images';
 import {useNetInfo} from '../../hooks/NetInfo';
 import {ProductsListInterface} from '../../redux-store/reducers/cart.reducer';
+import {deleteFromCart} from '../../redux-store/actions';
 
 const Cart: FunctionComponent = (): JSX.Element => {
   const navigation = useNavigation();
@@ -20,6 +21,10 @@ const Cart: FunctionComponent = (): JSX.Element => {
   const cartList: ProductsListInterface[] = useAppSelector(
     (state: any) => state.cart.cartList,
   );
+
+  const handleDeleteProduct: Function = (item: ProductsListInterface, index: number) => {
+    dispatch(deleteFromCart(item, index));
+  };
 
   const _renderItem = ({
     item,
@@ -39,32 +44,32 @@ const Cart: FunctionComponent = (): JSX.Element => {
           </Text>
           <Text style={styles.txt}>{`$ ${item.price}`}</Text>
           <Text style={styles.txt}>{`colour: ${item.colour}`}</Text>
-          <TouchableOpacity activeOpacity={0.7} style={styles.deleteBtn}>
+          <TouchableOpacity activeOpacity={0.7} style={styles.deleteBtn} onPress={() => handleDeleteProduct(item, index)}>
             <Image
               source={Images.delete}
               style={styles.img}
               resizeMode="contain"
             />
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.7} style={styles.counterBtn}>
-            <View style={styles.iconView}>
+          <View style={styles.counterBtn}>
+            <TouchableOpacity activeOpacity={0.7} style={styles.iconView}>
               <Image
                 source={Images.decrement}
                 style={styles.img}
                 resizeMode="contain"
               />
-            </View>
+            </TouchableOpacity>
 
             <Text style={{fontSize: 18}}>{'1'}</Text>
 
-            <View style={styles.iconView}>
+            <TouchableOpacity activeOpacity={0.7} style={styles.iconView}>
               <Image
                 source={Images.increment}
                 style={styles.img}
                 resizeMode="contain"
               />
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
