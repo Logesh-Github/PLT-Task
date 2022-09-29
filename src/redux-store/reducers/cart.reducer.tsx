@@ -4,6 +4,8 @@ import {
   TOGGLE_LOADER,
   ADD_PRODUCT_TO_CART,
   DELETE_PRODUCT_FROM_CART,
+  INCREASE_PRODUCT_QUANTITY,
+  DECREASE_PRODUCT_QUANTITY,
 } from '../types';
 
 export interface ProductsListInterface {
@@ -13,6 +15,8 @@ export interface ProductsListInterface {
   price: number;
   img: string;
   isAddedToCart?: boolean;
+  productCount?: number;
+  newPrice?: number
 }
 
 interface CartState {
@@ -62,6 +66,7 @@ export function cartReducer(
       let productTempArr: ProductsListInterface[] = [...state.productList];
       let product: any = productTempArr.find((item: ProductsListInterface, index: number) => index === action.payload.productIndex);
       product.isAddedToCart = true;
+      product.productCount = 1;
       productTempArr[action.payload.productIndex] = product;
       cartTempArr.push(action.payload.data);
       return {
@@ -76,11 +81,35 @@ export function cartReducer(
       let product: any = productTempArr.find((item: ProductsListInterface, index: number) => index === action.payload.productIndex);
       product.isAddedToCart = false;
       productTempArr[action.payload.productIndex] = product;
-      cartTempArr.splice(cartTempArr.findIndex(a => a.id === action.payload.data.id) , 1);
+      cartTempArr.splice(cartTempArr.findIndex((a, i) => i === action.payload.productIndex) , 1);
       return {
         ...state,
         productList: productTempArr,
         cartList: cartTempArr
+      };
+    }
+    case INCREASE_PRODUCT_QUANTITY: {
+      let cartTempArr: ProductsListInterface[] = [...state.cartList];
+      let product: any = cartTempArr.find((item: ProductsListInterface, index: number) => index === action.payload.productIndex);
+      let count = product.productCount;
+      let newCount = count + 1;
+      product.productCount = newCount;
+      cartTempArr[action.payload.productIndex] = product;
+      return {
+        ...state,
+        cartList: cartTempArr,
+      };
+    }
+    case DECREASE_PRODUCT_QUANTITY: {
+      let cartTempArr: ProductsListInterface[] = [...state.cartList];
+      let product: any = cartTempArr.find((item: ProductsListInterface, index: number) => index === action.payload.productIndex);
+      let count = product.productCount;
+      let newCount = count - 1;
+      product.productCount = newCount;
+      cartTempArr[action.payload.productIndex] = product;
+      return {
+        ...state,
+        cartList: cartTempArr,
       };
     }
     default:

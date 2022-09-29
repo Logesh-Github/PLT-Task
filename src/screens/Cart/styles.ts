@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     iconView: { height: 30, width: 30 },
-    emptyView: {flex: 1, justifyContent: 'center', alignItems: 'center'}
+    emptyView: { flex: 1, justifyContent: 'center', alignItems: 'center' }
 });
 
 export default styles;

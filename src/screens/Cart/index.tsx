@@ -6,7 +6,11 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import Images from '../../assets/images';
 import {useNetInfo} from '../../hooks/NetInfo';
 import {ProductsListInterface} from '../../redux-store/reducers/cart.reducer';
-import {deleteFromCart} from '../../redux-store/actions';
+import {
+  deleteFromCart,
+  increaseProductQty,
+  decreaseProductQty,
+} from '../../redux-store/actions';
 
 const Cart: FunctionComponent = (): JSX.Element => {
   const navigation = useNavigation();
@@ -22,8 +26,29 @@ const Cart: FunctionComponent = (): JSX.Element => {
     (state: any) => state.cart.cartList,
   );
 
-  const handleDeleteProduct: Function = (item: ProductsListInterface, index: number) => {
+  const handleDeleteProduct: Function = (
+    item: ProductsListInterface,
+    index: number,
+  ) => {
     dispatch(deleteFromCart(item, index));
+  };
+
+  const handleIncreaseProductQty: Function = (
+    item: ProductsListInterface,
+    index: number,
+  ) => {
+    dispatch(increaseProductQty(item, index));
+  };
+
+  const handleDecreaseProductQty: Function = (
+    item: ProductsListInterface,
+    index: number,
+  ) => {
+    if (item.productCount !== undefined) {
+      if (item.productCount > 1) {
+        dispatch(decreaseProductQty(item, index));
+      }
+    }
   };
 
   const _renderItem = ({
@@ -36,7 +61,11 @@ const Cart: FunctionComponent = (): JSX.Element => {
     return (
       <View style={styles.card} key={index.toString()}>
         <View style={styles.imgView}>
-        <Image source={{uri: item.img}} style={styles.img} resizeMode={"contain"} />
+          <Image
+            source={{uri: item.img}}
+            style={styles.img}
+            resizeMode={'contain'}
+          />
         </View>
         <View style={styles.detailsView}>
           <Text numberOfLines={3} style={styles.txt}>
@@ -44,7 +73,10 @@ const Cart: FunctionComponent = (): JSX.Element => {
           </Text>
           <Text style={styles.txt}>{`$ ${item.price}`}</Text>
           <Text style={styles.txt}>{`colour: ${item.colour}`}</Text>
-          <TouchableOpacity activeOpacity={0.7} style={styles.deleteBtn} onPress={() => handleDeleteProduct(item, index)}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={styles.deleteBtn}
+            onPress={() => handleDeleteProduct(item, index)}>
             <Image
               source={Images.delete}
               style={styles.img}
@@ -52,7 +84,10 @@ const Cart: FunctionComponent = (): JSX.Element => {
             />
           </TouchableOpacity>
           <View style={styles.counterBtn}>
-            <TouchableOpacity activeOpacity={0.7} style={styles.iconView}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={styles.iconView}
+              onPress={() => handleDecreaseProductQty(item, index)}>
               <Image
                 source={Images.decrement}
                 style={styles.img}
@@ -60,9 +95,12 @@ const Cart: FunctionComponent = (): JSX.Element => {
               />
             </TouchableOpacity>
 
-            <Text style={{fontSize: 18}}>{'1'}</Text>
+            <Text style={{fontSize: 18}}>{item.productCount}</Text>
 
-            <TouchableOpacity activeOpacity={0.7} style={styles.iconView}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={styles.iconView}
+              onPress={() => handleIncreaseProductQty(item, index)}>
               <Image
                 source={Images.increment}
                 style={styles.img}
@@ -77,7 +115,7 @@ const Cart: FunctionComponent = (): JSX.Element => {
 
   const _renderEmptyUI = () => (
     <View style={styles.emptyView}>
-      <Text>{"Shopping Cart is empty"}</Text>
+      <Text>{'Shopping Cart is empty'}</Text>
     </View>
   );
 

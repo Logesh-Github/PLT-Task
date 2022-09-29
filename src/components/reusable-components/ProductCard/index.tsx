@@ -11,6 +11,7 @@ interface IProps {
   img: string;
   price: number;
   isAddedToCart?: boolean;
+  productCount?: number;
   };
 }
 

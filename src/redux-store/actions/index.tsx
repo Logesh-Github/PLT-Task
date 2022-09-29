@@ -4,6 +4,8 @@ import {
   TOGGLE_LOADER,
   ADD_PRODUCT_TO_CART,
   DELETE_PRODUCT_FROM_CART,
+  INCREASE_PRODUCT_QUANTITY,
+  DECREASE_PRODUCT_QUANTITY,
 } from '../types';
 import {ActionCreator, Action, Dispatch} from 'redux';
 import {ProductsListInterface} from '../reducers/cart.reducer';
@@ -29,6 +31,16 @@ interface AddToCartAction {
 
 interface DeleteFromCartAction {
   type: typeof DELETE_PRODUCT_FROM_CART;
+  payload: {data: ProductsListInterface, productIndex: number};
+}
+
+interface IncreaseProductQtyAction {
+  type: typeof INCREASE_PRODUCT_QUANTITY;
+  payload: {data: ProductsListInterface, productIndex: number};
+}
+
+interface DecreaseProductQtyAction {
+  type: typeof DECREASE_PRODUCT_QUANTITY;
   payload: {data: ProductsListInterface, productIndex: number};
 }
 
@@ -85,6 +97,26 @@ export const deleteFromCart: ActionCreator<DeleteFromCartAction> = (
 ) => {
   return {
     type: DELETE_PRODUCT_FROM_CART,
+    payload: {data, productIndex}
+  };
+};
+
+export const increaseProductQty: ActionCreator<IncreaseProductQtyAction> = (
+  data: ProductsListInterface,
+  productIndex: number
+) => {
+  return {
+    type: INCREASE_PRODUCT_QUANTITY,
+    payload: {data, productIndex}
+  };
+};
+
+export const decreaseProductQty: ActionCreator<DecreaseProductQtyAction> = (
+  data: ProductsListInterface,
+  productIndex: number
+) => {
+  return {
+    type: DECREASE_PRODUCT_QUANTITY,
     payload: {data, productIndex}
   };
 };
