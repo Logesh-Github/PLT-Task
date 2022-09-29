@@ -14,6 +14,7 @@ const Header: React.FC<IProps> = ({title, imageSource, onPressRightBtn}): JSX.El
     <View style={styles.headerView}>
       <View style={styles.headerSubView}>
         <Text style={styles.titleText}>{title ? title : "PRETTY-ECOM TASK"}</Text>
+        <View>
         <TouchableOpacity activeOpacity={0.7} onPress={onPressRightBtn}  style={styles.rightIconView}>
           <Image
             source={imageSource ? imageSource : Images.cart}
@@ -21,6 +22,10 @@ const Header: React.FC<IProps> = ({title, imageSource, onPressRightBtn}): JSX.El
             resizeMode="contain"
           />
         </TouchableOpacity>
+        <View style={styles.badge}>
+          <Text style={{alignSelf: 'center'}}>1</Text>
+        </View>
+        </View>
       </View>
     </View>
   );

@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     marginLeft: 10
   },
+  badge: {height: 20, width: 20, backgroundColor: 'red', borderRadius: 20 / 2, position: 'absolute', right: 15, bottom: 18}
 });
 
 export default styles;
