@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import styles from './styles';
 
 interface IProps {
-  onPressCard: () => void;
+  onPressAddCartBtn: () => void;
   productDetail: {
     id: number;
   name: string;
@@ -14,14 +14,12 @@ interface IProps {
 }
 
 const ProductCard: React.FC<IProps> = ({
-  onPressCard,
+    onPressAddCartBtn,
   productDetail,
 }): JSX.Element => {
   return (
-    <TouchableOpacity
-      activeOpacity={0.8}
-      style={[styles.card]}
-      onPress={onPressCard}>
+    <View
+      style={[styles.card]}>
       <View style={styles.mainView}>
         <View style={styles.productImageView}>
           <Image source={{uri: productDetail.img}} style={[styles.editImage, {borderTopLeftRadius: 10, borderTopRightRadius: 10}]} resizeMode="contain" />
@@ -37,9 +35,12 @@ const ProductCard: React.FC<IProps> = ({
               </Text>
             </View>
           </View>
+      <TouchableOpacity onPress={onPressAddCartBtn} activeOpacity={0.7} style={styles.cartBtn}>
+          <Text style={styles.cartBtnTxt}>Add To Cart</Text>
+      </TouchableOpacity>
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 

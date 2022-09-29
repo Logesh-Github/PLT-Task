@@ -5,6 +5,7 @@ import {ProductsListInterface} from '../../../redux-store/reducers/cart.reducer'
 
 interface IProps {
   data: ProductsListInterface[];
+  onPressAddCartBtn: (item: ProductsListInterface, index: number) => void;
 }
 
 interface ProductsListItem {
@@ -17,6 +18,7 @@ interface ProductsListItem {
 
 const ProductList: React.FC<IProps> = ({
     data,
+    onPressAddCartBtn
 }): JSX.Element => {
 
   const _renderItem = ({
@@ -27,7 +29,7 @@ const ProductList: React.FC<IProps> = ({
     index: number;
   }) => (
     <ProductCard
-      onPressCard={() => {}}
+      onPressAddCartBtn={() => onPressAddCartBtn(item, index)}
       productDetail={item}
     />
   );

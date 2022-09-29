@@ -22,6 +22,11 @@ const Home: FunctionComponent = (): JSX.Element => {
     }
   }, []);
 
+  const handleAddToCart = (item: ProductsListInterface, index: number) => {
+    console.log(item);
+    console.log(index);
+  };
+
   return (
     <View style={styles.mainContainer}>
       {isLoading && <CustomLoader />}
@@ -29,7 +34,7 @@ const Home: FunctionComponent = (): JSX.Element => {
         imageSource={Images.cart}
         onPressRightBtn={() => navigation.navigate('Cart')}
       />
-      <ProductList data={productList} />
+      <ProductList data={productList} onPressAddCartBtn = {(item: ProductsListInterface, index: number) => handleAddToCart(item, index)} />
     </View>
   );
 };
