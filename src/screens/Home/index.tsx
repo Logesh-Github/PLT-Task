@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {CustomLoader, Header, ProductList} from '../../components/reusable-components';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import Images from '../../assets/images';
-import {getProducts} from '../../redux-store/actions';
+import {getProducts, addProductToCart} from '../../redux-store/actions';
 import {useNetInfo} from '../../hooks/NetInfo';
 import {ProductsListInterface} from '../../redux-store/reducers/cart.reducer';
 
@@ -23,8 +23,7 @@ const Home: FunctionComponent = (): JSX.Element => {
   }, []);
 
   const handleAddToCart = (item: ProductsListInterface, index: number) => {
-    console.log(item);
-    console.log(index);
+    dispatch(addProductToCart(item));
   };
 
   return (

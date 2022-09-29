@@ -2,6 +2,7 @@ import {
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_FAIL,
   TOGGLE_LOADER,
+  ADD_PRODUCT_TO_CART
 } from '../types';
 
 export interface ProductsListInterface {
@@ -52,6 +53,14 @@ export function cartReducer(
         ...state,
         isLoading: false,
         productList: [],
+      };
+    }
+    case ADD_PRODUCT_TO_CART: {
+      let tempArr = [...state.cartList];
+      tempArr.push(action.payload);
+      return {
+        ...state,
+        cartList: tempArr,
       };
     }
     default:
