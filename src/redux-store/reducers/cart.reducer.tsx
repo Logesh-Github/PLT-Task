@@ -15,7 +15,6 @@ interface productsListInterface {
 interface CartState {
   productList: productsListInterface[];
   cartList: productsListInterface[];
-  name: string;
   isLoading: boolean;
 }
 
@@ -27,7 +26,6 @@ type Action = {
 const initialState: CartState = {
   productList: [],
   cartList: [],
-  name: 'Hi Logesh!',
   isLoading: false,
 };
 
@@ -45,12 +43,14 @@ export function cartReducer(
     case GET_PRODUCTS_SUCCESS: {
       return {
         ...state,
+        isLoading: false,
         productList: action.payload,
       };
     }
     case GET_PRODUCTS_FAIL: {
       return {
         ...state,
+        isLoading: false,
         productList: [],
       };
     }

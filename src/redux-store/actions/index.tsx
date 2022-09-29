@@ -1,5 +1,5 @@
 import { GET_PRODUCTS_SUCCESS, GET_PRODUCTS_FAIL, TOGGLE_LOADER } from '../types';
-import {ActionCreator} from 'redux';
+import {ActionCreator, Action, Dispatch} from 'redux';
 
 interface productsListInterface {
     id: string
@@ -23,7 +23,7 @@ interface ToggleLoaderAction {
     payload: boolean
 }
 
-export const toggleLoader: ActionCreator<ToggleLoaderAction> = (value: boolean) => {
+export const toggleLoader: ActionCreator<ToggleLoaderAction>= (value: boolean) => {
     return {
         type: TOGGLE_LOADER,
         payload: value
@@ -42,4 +42,15 @@ export const getProductSuccess: ActionCreator<GetProductSuccessAction> = (data: 
     };
   };
 
-  export const getProducts = () => {};
+export const getProducts = () => async (
+    dispatch: Dispatch<any>
+  ) => {
+    dispatch(toggleLoader(true));
+    try {
+      const res = await fetch('https://my-json-server.typicode.com/benirvingplt/products/products');
+      const data = await res.json();
+      dispatch(getProductSuccess(data));
+    } catch(error) {
+      dispatch(getProductFail());
+    }
+  };
