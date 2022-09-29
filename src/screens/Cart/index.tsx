@@ -71,7 +71,7 @@ const Cart: FunctionComponent = (): JSX.Element => {
           <Text numberOfLines={3} style={styles.txt}>
             {item.name}
           </Text>
-          <Text style={styles.txt}>{`$ ${item.price}`}</Text>
+          <Text style={styles.txt}>{`$ ${item?.productCount === 1 ? item.price : item?.newPrice ? item.newPrice : item.price}`}</Text>
           <Text style={styles.txt}>{`colour: ${item.colour}`}</Text>
           <TouchableOpacity
             activeOpacity={0.7}

@@ -94,6 +94,10 @@ export function cartReducer(
       let count = product.productCount;
       let newCount = count + 1;
       product.productCount = newCount;
+      let basePrice = product.price;
+      let increasedPrice = product?.newPrice ? product?.newPrice : product.price;
+      let newPrice = increasedPrice + basePrice;
+      product.newPrice = newPrice;
       cartTempArr[action.payload.productIndex] = product;
       return {
         ...state,
@@ -106,6 +110,10 @@ export function cartReducer(
       let count = product.productCount;
       let newCount = count - 1;
       product.productCount = newCount;
+      let basePrice = product.price;
+      let decreasedPrice = product?.newPrice ? product?.newPrice : product.price;
+      let newPrice = decreasedPrice - basePrice;
+      product.newPrice = newPrice;
       cartTempArr[action.payload.productIndex] = product;
       return {
         ...state,
